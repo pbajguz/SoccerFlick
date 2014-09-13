@@ -16,7 +16,8 @@
 
 @implementation HelloWorldScene
 {
-    CCSprite *_sprite;
+    CCSprite *_ball;
+    CCPhysicsNode *_physicsWorld;
 }
 
 // -----------------------------------------------------------------------
@@ -40,17 +41,28 @@
     self.userInteractionEnabled = YES;
     
     // Create a colored background (Dark Grey)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:1.0f]];
+    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.8f blue:0.2f alpha:1.0f]];
     [self addChild:background];
     
+    // Create physics
+    _physicsWorld = [CCPhysicsNode node];
+    _physicsWorld.gravity = ccp(0,-1);
+    _physicsWorld.debugDraw = YES;
+    _physicsWorld.collisionDelegate = self;
+    [self addChild:_physicsWorld];
+    
     // Add a sprite
-    _sprite = [CCSprite spriteWithImageNamed:@"Icon-72.png"];
-    _sprite.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    [self addChild:_sprite];
+    _ball = [CCSprite spriteWithImageNamed:@"soccer_ball_1.png"];
+    _ball.scale = 0.1;
+    _ball.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
+//    [self addChild:_ball];
+    _ball.physicsBody = [CCPhysicsBody bodyWithCircleOfRadius:_ball.contentSize.width/2 andCenter:_ball.position];
+    _ball.physicsBody.collisionGroup = @"ball";
+    [_physicsWorld addChild:_ball];
     
     // Animate sprite with action
-    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:1.5f angle:360];
-    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
+//    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:1.5f angle:360];
+//    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -105,7 +117,7 @@
     
     // Move our sprite to touch location
     CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
-    [_sprite runAction:actionMove];
+    [_ball runAction:actionMove];
 }
 
 // -----------------------------------------------------------------------

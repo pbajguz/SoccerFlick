@@ -202,6 +202,9 @@
 		4FA1315219C46F1B00204AC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1315119C46F1B00204AC4 /* AppDelegate.m */; };
 		4FA1315519C46F1B00204AC4 /* HelloWorldScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1315419C46F1B00204AC4 /* HelloWorldScene.m */; };
 		4FA1315819C46F1B00204AC4 /* IntroScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1315719C46F1B00204AC4 /* IntroScene.m */; };
+		4FA1316319C4732E00204AC4 /* soccer_ball_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316219C4732E00204AC4 /* soccer_ball_1.png */; };
+		4FA1316619C47C8E00204AC4 /* limb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316419C47C8E00204AC4 /* limb.png */; };
+		4FA1316719C47C8E00204AC4 /* torso.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316519C47C8E00204AC4 /* torso.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -613,6 +616,9 @@
 		4FA1315419C46F1B00204AC4 /* HelloWorldScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HelloWorldScene.m; path = Classes/HelloWorldScene.m; sourceTree = "<group>"; };
 		4FA1315619C46F1B00204AC4 /* IntroScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IntroScene.h; path = Classes/IntroScene.h; sourceTree = "<group>"; };
 		4FA1315719C46F1B00204AC4 /* IntroScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IntroScene.m; path = Classes/IntroScene.m; sourceTree = "<group>"; };
+		4FA1316219C4732E00204AC4 /* soccer_ball_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soccer_ball_1.png; sourceTree = "<group>"; };
+		4FA1316419C47C8E00204AC4 /* limb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = limb.png; sourceTree = "<group>"; };
+		4FA1316519C47C8E00204AC4 /* torso.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = torso.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -686,6 +692,7 @@
 		4FA12EF119C46F1800204AC4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4FA1316119C472FB00204AC4 /* Images */,
 				4FA12EF219C46F1800204AC4 /* Default.png */,
 				4FA12EF419C46F1800204AC4 /* Default@2x.png */,
 				4FA12EF619C46F1800204AC4 /* Default-568h@2x.png */,
@@ -1433,6 +1440,16 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		4FA1316119C472FB00204AC4 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4FA1316419C47C8E00204AC4 /* limb.png */,
+				4FA1316519C47C8E00204AC4 /* torso.png */,
+				4FA1316219C4732E00204AC4 /* soccer_ball_1.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1514,14 +1531,17 @@
 				4FA1314A19C46F1B00204AC4 /* LICENSE_Chipmunk.txt in Resources */,
 				4FA12F0019C46F1800204AC4 /* Icon-72.png in Resources */,
 				4FA130DC19C46F1B00204AC4 /* LICENSE_CCBReader.txt in Resources */,
+				4FA1316719C47C8E00204AC4 /* torso.png in Resources */,
 				4FA1304C19C46F1A00204AC4 /* LICENSE_cocos2d.txt in Resources */,
 				4FA12EF719C46F1800204AC4 /* Default-568h@2x.png in Resources */,
 				4FA12F1719C46F1800204AC4 /* iTunesArtwork in Resources */,
 				4FA12F1219C46F1800204AC4 /* Icon-Spotlight-iOS7.png in Resources */,
 				4FA12F0619C46F1800204AC4 /* Icon-76@2x.png in Resources */,
 				4FA12F1419C46F1800204AC4 /* Icon-Spotlight-iOS7@2x.png in Resources */,
+				4FA1316319C4732E00204AC4 /* soccer_ball_1.png in Resources */,
 				4FA12F0419C46F1800204AC4 /* Icon-76.png in Resources */,
 				4FA12F1919C46F1800204AC4 /* iTunesArtwork@2x in Resources */,
+				4FA1316619C47C8E00204AC4 /* limb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1858,6 +1878,7 @@
 				4FA1315D19C46F1B00204AC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4FA1315E19C46F1B00204AC4 /* Build configuration list for PBXNativeTarget "SoccerFlick" */ = {
 			isa = XCConfigurationList;
@@ -1866,6 +1887,7 @@
 				4FA1316019C46F1B00204AC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
