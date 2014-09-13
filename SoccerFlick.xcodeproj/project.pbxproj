@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2F457319C4D03F006A9FF0 /* World.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F457219C4D03F006A9FF0 /* World.m */; };
+		4F2F457619C4D32E006A9FF0 /* Ball.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F457519C4D32E006A9FF0 /* Ball.m */; };
+		4F2F457919C4D3A2006A9FF0 /* Goal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F457819C4D3A2006A9FF0 /* Goal.m */; };
 		4FA12ED719C46F1800204AC4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA12ED619C46F1800204AC4 /* QuartzCore.framework */; };
 		4FA12ED919C46F1800204AC4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA12ED819C46F1800204AC4 /* OpenGLES.framework */; };
 		4FA12EDB19C46F1800204AC4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA12EDA19C46F1800204AC4 /* OpenAL.framework */; };
@@ -206,6 +209,7 @@
 		4FA1316619C47C8E00204AC4 /* limb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316419C47C8E00204AC4 /* limb.png */; };
 		4FA1316719C47C8E00204AC4 /* torso.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316519C47C8E00204AC4 /* torso.png */; };
 		4FA1316919C49ADD00204AC4 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316819C49ADD00204AC4 /* blank.png */; };
+		4FA1316D19C4CB0800204AC4 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1316C19C4CB0800204AC4 /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +223,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F2F457119C4D03F006A9FF0 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		4F2F457219C4D03F006A9FF0 /* World.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World.m; sourceTree = "<group>"; };
+		4F2F457419C4D32E006A9FF0 /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		4F2F457519C4D32E006A9FF0 /* Ball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ball.m; sourceTree = "<group>"; };
+		4F2F457719C4D3A2006A9FF0 /* Goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goal.h; sourceTree = "<group>"; };
+		4F2F457819C4D3A2006A9FF0 /* Goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goal.m; sourceTree = "<group>"; };
 		4FA12ED319C46F1800204AC4 /* SoccerFlick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoccerFlick.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA12ED619C46F1800204AC4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4FA12ED819C46F1800204AC4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -621,6 +631,8 @@
 		4FA1316419C47C8E00204AC4 /* limb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = limb.png; sourceTree = "<group>"; };
 		4FA1316519C47C8E00204AC4 /* torso.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = torso.png; sourceTree = "<group>"; };
 		4FA1316819C49ADD00204AC4 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		4FA1316B19C4CB0800204AC4 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		4FA1316C19C4CB0800204AC4 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1432,6 +1444,7 @@
 		4FA1314F19C46F1B00204AC4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4FA1316A19C4C7ED00204AC4 /* Entities */,
 				4FA1315019C46F1B00204AC4 /* AppDelegate.h */,
 				4FA1315119C46F1B00204AC4 /* AppDelegate.m */,
 				4FA1315319C46F1B00204AC4 /* HelloWorldScene.h */,
@@ -1451,6 +1464,21 @@
 				4FA1316219C4732E00204AC4 /* soccer_ball_1.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		4FA1316A19C4C7ED00204AC4 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4FA1316B19C4CB0800204AC4 /* Player.h */,
+				4FA1316C19C4CB0800204AC4 /* Player.m */,
+				4F2F457119C4D03F006A9FF0 /* World.h */,
+				4F2F457219C4D03F006A9FF0 /* World.m */,
+				4F2F457419C4D32E006A9FF0 /* Ball.h */,
+				4F2F457519C4D32E006A9FF0 /* Ball.m */,
+				4F2F457719C4D3A2006A9FF0 /* Goal.h */,
+				4F2F457819C4D3A2006A9FF0 /* Goal.m */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1578,6 +1606,7 @@
 				4FA12F2B19C46F1800204AC4 /* CCEffect.m in Sources */,
 				4FA130C919C46F1B00204AC4 /* CCBAnimationManager.m in Sources */,
 				4FA1303719C46F1A00204AC4 /* CCVertex.m in Sources */,
+				4F2F457919C4D3A2006A9FF0 /* Goal.m in Sources */,
 				4FA1315519C46F1B00204AC4 /* HelloWorldScene.m in Sources */,
 				4FA12F6B19C46F1900204AC4 /* CCAnimationCache.m in Sources */,
 				4FA1302519C46F1900204AC4 /* base64.c in Sources */,
@@ -1588,6 +1617,7 @@
 				4FA1303219C46F1A00204AC4 /* ccUtils.c in Sources */,
 				4FA12F8F19C46F1900204AC4 /* CCLayoutBox.m in Sources */,
 				4FA12FE819C46F1900204AC4 /* CCTexture.m in Sources */,
+				4F2F457319C4D03F006A9FF0 /* World.m in Sources */,
 				4FA1303A19C46F1A00204AC4 /* CGPointExtension.m in Sources */,
 				4FA12F6419C46F1900204AC4 /* CCActionTween.m in Sources */,
 				4FA130C619C46F1B00204AC4 /* CCAnimationManager.m in Sources */,
@@ -1623,6 +1653,7 @@
 				4FA1308B19C46F1B00204AC4 /* OpenALManager.m in Sources */,
 				4FA12FFB19C46F1900204AC4 /* CCTMXXMLParser.m in Sources */,
 				4FA1303019C46F1A00204AC4 /* CCProfiling.m in Sources */,
+				4F2F457619C4D32E006A9FF0 /* Ball.m in Sources */,
 				4FA1309219C46F1B00204AC4 /* OALSuspendHandler.m in Sources */,
 				4FA130C019C46F1B00204AC4 /* CCTextField.m in Sources */,
 				4FA12F9819C46F1900204AC4 /* CCNode.m in Sources */,
@@ -1650,6 +1681,7 @@
 				4FA1309919C46F1B00204AC4 /* mach_timing.c in Sources */,
 				4FA12FD319C46F1900204AC4 /* CCScheduler.m in Sources */,
 				4FA12FF119C46F1900204AC4 /* CCTiledMap.m in Sources */,
+				4FA1316D19C4CB0800204AC4 /* Player.m in Sources */,
 				4FA12F3319C46F1800204AC4 /* CCEffectColorPulse.m in Sources */,
 				4FA12FC919C46F1900204AC4 /* CCResponder.m in Sources */,
 				4FA12FC519C46F1900204AC4 /* CCRenderTexture.m in Sources */,

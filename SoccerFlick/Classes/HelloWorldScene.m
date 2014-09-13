@@ -9,6 +9,10 @@
 
 #import "HelloWorldScene.h"
 #import "IntroScene.h"
+#import "World.h"
+#import "Player.h"
+#import "Ball.h"
+#import "Goal.h"
 
 // -----------------------------------------------------------------------
 #pragma mark - HelloWorldScene
@@ -19,6 +23,13 @@
     CCSprite *_ball;
     CCPhysicsNode *_physicsWorld;
     CCSprite *_floor;
+    
+    World *world;
+    Player *player;
+    Player *enemy;
+    Ball *ball;
+    Goal *playerGoal;
+    Goal *enemyGoal;
 }
 
 // -----------------------------------------------------------------------
@@ -41,37 +52,16 @@
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
-    // Create a colored background (Green)
-    CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.8f blue:0.2f alpha:1.0f]];
-    [self addChild:background];
+    // Screen size for diffrent objects
+    CGFloat width = self.contentSize.width, height = self.contentSize.height;
     
-    // Create physics
-    _physicsWorld = [CCPhysicsNode node];
-    _physicsWorld.gravity = ccp(0,-100);
-    _physicsWorld.debugDraw = YES;
-    _physicsWorld.collisionDelegate = self;
-    [self addChild:_physicsWorld];
+    // Create world
+    __weak CCScene *weakSelf = self;
+    world = [[World alloc] initWithScene:weakSelf];
     
     // Add the ball
-    _ball = [CCSprite spriteWithImageNamed:@"soccer_ball_1.png"];
-    _ball.scale = 0.1;
-    _ball.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
-    _ball.physicsBody = [CCPhysicsBody bodyWithCircleOfRadius:_ball.contentSize.width/2 andCenter:ccp(_ball.contentSize.width/2, _ball.contentSize.height/2)];
-    _ball.physicsBody.elasticity = 2;
-    _ball.physicsBody.collisionType = @"ball";
-    [_physicsWorld addChild:_ball];
-    
-    // Add the floor
-    _floor = [CCSprite spriteWithImageNamed:@"blank.png"];
-    _floor.scaleX = self.contentSize.width;
-    _floor.scaleY = 50;
-    _floor.position = ccp(self.contentSize.width/2, 0);
-    _floor.color = [CCColor blueColor];
-    _floor.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _floor.contentSize} cornerRadius:0];
-    _floor.physicsBody.affectedByGravity = NO;
-    _floor.physicsBody.mass = 1000000;
-    _floor.physicsBody.collisionType = @"floor";
-    [_physicsWorld addChild:_floor];
+    ball = [[Ball alloc] initWithWidth:width height:height];
+    [world addChild:ball];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
