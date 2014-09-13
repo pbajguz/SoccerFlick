@@ -18,6 +18,7 @@
 {
     CCSprite *_ball;
     CCPhysicsNode *_physicsWorld;
+    CCSprite *_floor;
 }
 
 // -----------------------------------------------------------------------
@@ -40,29 +41,37 @@
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
     
-    // Create a colored background (Dark Grey)
+    // Create a colored background (Green)
     CCNodeColor *background = [CCNodeColor nodeWithColor:[CCColor colorWithRed:0.2f green:0.8f blue:0.2f alpha:1.0f]];
     [self addChild:background];
     
     // Create physics
     _physicsWorld = [CCPhysicsNode node];
-    _physicsWorld.gravity = ccp(0,-1);
+    _physicsWorld.gravity = ccp(0,-100);
     _physicsWorld.debugDraw = YES;
     _physicsWorld.collisionDelegate = self;
     [self addChild:_physicsWorld];
     
-    // Add a sprite
+    // Add the ball
     _ball = [CCSprite spriteWithImageNamed:@"soccer_ball_1.png"];
     _ball.scale = 0.1;
     _ball.position  = ccp(self.contentSize.width/2,self.contentSize.height/2);
-//    [self addChild:_ball];
-    _ball.physicsBody = [CCPhysicsBody bodyWithCircleOfRadius:_ball.contentSize.width/2 andCenter:_ball.position];
-    _ball.physicsBody.collisionGroup = @"ball";
+    _ball.physicsBody = [CCPhysicsBody bodyWithCircleOfRadius:_ball.contentSize.width/2 andCenter:ccp(_ball.contentSize.width/2, _ball.contentSize.height/2)];
+    _ball.physicsBody.elasticity = 2;
+    _ball.physicsBody.collisionType = @"ball";
     [_physicsWorld addChild:_ball];
     
-    // Animate sprite with action
-//    CCActionRotateBy* actionSpin = [CCActionRotateBy actionWithDuration:1.5f angle:360];
-//    [_sprite runAction:[CCActionRepeatForever actionWithAction:actionSpin]];
+    // Add the floor
+    _floor = [CCSprite spriteWithImageNamed:@"blank.png"];
+    _floor.scaleX = self.contentSize.width;
+    _floor.scaleY = 50;
+    _floor.position = ccp(self.contentSize.width/2, 0);
+    _floor.color = [CCColor blueColor];
+    _floor.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, _floor.contentSize} cornerRadius:0];
+    _floor.physicsBody.affectedByGravity = NO;
+    _floor.physicsBody.mass = 1000000;
+    _floor.physicsBody.collisionType = @"floor";
+    [_physicsWorld addChild:_floor];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -80,6 +89,11 @@
 - (void)dealloc
 {
     // clean up code goes here
+}
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ball:(CCNode *)nodeA floor:(CCNode *)nodeB {
+    NSLog(@"Objects touched!");
+    return TRUE;
 }
 
 // -----------------------------------------------------------------------

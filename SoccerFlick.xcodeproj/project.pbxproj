@@ -205,6 +205,7 @@
 		4FA1316319C4732E00204AC4 /* soccer_ball_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316219C4732E00204AC4 /* soccer_ball_1.png */; };
 		4FA1316619C47C8E00204AC4 /* limb.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316419C47C8E00204AC4 /* limb.png */; };
 		4FA1316719C47C8E00204AC4 /* torso.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316519C47C8E00204AC4 /* torso.png */; };
+		4FA1316919C49ADD00204AC4 /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA1316819C49ADD00204AC4 /* blank.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -619,6 +620,7 @@
 		4FA1316219C4732E00204AC4 /* soccer_ball_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soccer_ball_1.png; sourceTree = "<group>"; };
 		4FA1316419C47C8E00204AC4 /* limb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = limb.png; sourceTree = "<group>"; };
 		4FA1316519C47C8E00204AC4 /* torso.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = torso.png; sourceTree = "<group>"; };
+		4FA1316819C49ADD00204AC4 /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1443,6 +1445,7 @@
 		4FA1316119C472FB00204AC4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4FA1316819C49ADD00204AC4 /* blank.png */,
 				4FA1316419C47C8E00204AC4 /* limb.png */,
 				4FA1316519C47C8E00204AC4 /* torso.png */,
 				4FA1316219C4732E00204AC4 /* soccer_ball_1.png */,
@@ -1535,6 +1538,7 @@
 				4FA1304C19C46F1A00204AC4 /* LICENSE_cocos2d.txt in Resources */,
 				4FA12EF719C46F1800204AC4 /* Default-568h@2x.png in Resources */,
 				4FA12F1719C46F1800204AC4 /* iTunesArtwork in Resources */,
+				4FA1316919C49ADD00204AC4 /* blank.png in Resources */,
 				4FA12F1219C46F1800204AC4 /* Icon-Spotlight-iOS7.png in Resources */,
 				4FA12F0619C46F1800204AC4 /* Icon-76@2x.png in Resources */,
 				4FA12F1419C46F1800204AC4 /* Icon-Spotlight-iOS7@2x.png in Resources */,
