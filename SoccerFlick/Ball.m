@@ -8,6 +8,10 @@
 
 #import "Ball.h"
 
+#define IMG_BALL @"soccer_ball_1.png"
+#define IMG_BALL_SCALE 0.1
+#define CONST_ELASTICITY 5
+
 @interface Ball () {
     CGPoint startPosition;
 }
@@ -17,12 +21,13 @@
 @implementation Ball
 
 -(id)initWithPosition:(CGPoint)point{
-    self = [super initWithImageNamed:@"soccer_ball_1.png"];
+    self = [super initWithImageNamed:IMG_BALL];
     if (self) {
-        self.scale = 0.1;
+        self.scale = IMG_BALL_SCALE;
         self.position = point;
         self.physicsBody = [CCPhysicsBody bodyWithCircleOfRadius:self.contentSize.width/2 andCenter:ccp(self.contentSize.width/2, self.contentSize.height/2)];
-        self.physicsBody.elasticity = 5;
+        self.physicsBody.elasticity = CONST_ELASTICITY;
+        // setting collision type so it can be later interpreted with goal to check for scoring
         self.physicsBody.collisionType = @"ball";
         startPosition = point;
     }

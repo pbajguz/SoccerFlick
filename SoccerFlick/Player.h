@@ -15,6 +15,8 @@
 
 //@property (strong, nonatomic) CCSprite* sprite;
 
+-(id)initWithPosition:(CGPoint)point color:(CCColor*)color;
+
 -(id)initWithPosition:(CGPoint)point;
 
 -(void)addToWorld:(CCPhysicsNode*)world;

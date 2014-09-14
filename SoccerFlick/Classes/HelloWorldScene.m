@@ -70,9 +70,9 @@
     [world addChild:ball];
     
     // Add the players
-    player = [[Player alloc] initWithPosition:ccp(width/4, height/3)];
+    player = [[Player alloc] initWithPosition:ccp(width/4, height/3) color:[CCColor blueColor]];
     [player addToWorld:world];
-    enemy = [[Player alloc] initWithPosition:ccp(width/4 * 3, height/3)];
+    enemy = [[Player alloc] initWithPosition:ccp(width/4 * 3, height/3) color:[CCColor redColor]];
     [enemy addToWorld:world];
     [enemy initAI];
     
