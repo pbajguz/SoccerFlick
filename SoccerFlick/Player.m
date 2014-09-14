@@ -143,4 +143,10 @@
     object.physicsBody.velocity = CGPointZero;
 }
 
+-(void)disableAI {
+    if ([aiTimer isValid]) {
+        [aiTimer invalidate];
+    }
+}
+
 @end

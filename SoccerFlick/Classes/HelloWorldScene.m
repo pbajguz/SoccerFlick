@@ -176,6 +176,8 @@
 // -----------------------------------------------------------------------
 
 -(void)onBackClicked:(id)sender {
+    // Prepare for leaving the scene
+    [enemy disableAI];
     [[CCDirector sharedDirector].view removeGestureRecognizer:panGestureRecognizer];
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[IntroScene scene]

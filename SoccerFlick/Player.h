@@ -27,4 +27,6 @@
 
 -(void)resetPosition;
 
+-(void)disableAI;
+
 @end
