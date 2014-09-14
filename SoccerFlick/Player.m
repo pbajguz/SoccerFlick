@@ -119,11 +119,21 @@
 
 // resets player position
 -(void)resetPosition {
+    // If the AI timer is running, stop it and resume after the reset
+    BOOL isAI = NO;
+    if ([aiTimer isValid]) {
+        [aiTimer invalidate];
+        isAI = YES;
+    }
     [self resetPositionOfObject:self position:startPosition];
     [self resetPositionOfObject:handLeft position:hL];
     [self resetPositionOfObject:handRight position:hR];
     [self resetPositionOfObject:legLeft position:lL];
     [self resetPositionOfObject:legRight position:lR];
+    
+    if (isAI) {
+        [self initAI];
+    }
 }
 
 -(void)resetPositionOfObject:(CCNode*)object position:(CGPoint)position {
