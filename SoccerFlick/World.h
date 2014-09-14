@@ -17,4 +17,6 @@
 
 -(void)addScore:(BOOL)enemy;
 
+-(void)toggleGravity;
+
 @end

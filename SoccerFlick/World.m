@@ -23,6 +23,7 @@
     // score for both teams
     int scorePlayer;
     int scoreEnemy;
+    BOOL gravityEnabled;
 }
 
 @end
@@ -40,6 +41,7 @@
         
         // Create physics
         self.gravity = ccp(0, -CONST_GRAVITY);
+        gravityEnabled = YES;
         //self.debugDraw = YES;
         self.collisionDelegate = (NSObject<CCPhysicsCollisionDelegate>*)canvas;
         // by limiting number of iterations game should be faster
@@ -89,6 +91,13 @@
     scoreLabel.string = [NSString stringWithFormat:@"%d : %d", scorePlayer, scoreEnemy];
 }
 
-
+// Toggle gravity on/off
+-(void)toggleGravity {
+    gravityEnabled = !gravityEnabled;
+    if (!gravityEnabled)
+        self.gravity = CGPointZero;
+    else
+        self.gravity = ccp(0, -CONST_GRAVITY);
+}
 
 @end

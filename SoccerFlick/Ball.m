@@ -10,7 +10,7 @@
 
 #define IMG_BALL @"soccer_ball_1.png"
 #define IMG_BALL_SCALE 0.1
-#define CONST_ELASTICITY 5
+#define CONST_ELASTICITY 3
 
 @interface Ball () {
     CGPoint startPosition;

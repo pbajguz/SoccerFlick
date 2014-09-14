@@ -149,7 +149,7 @@
 }
 
 // -----------------------------------------------------------------------
-#pragma mark - Touch Handler
+#pragma mark - User interactions
 // -----------------------------------------------------------------------
 
 // Detect user flicks
@@ -159,12 +159,16 @@
             break;
         case UIGestureRecognizerStateEnded:
             velocity = [recognizer velocityInView:[recognizer.view superview]];
-            CGFloat angle = atan2f(velocity.y, velocity.x);
-            NSLog(@"%f, %f, %f", velocity.x, velocity.y, angle);
             [player jumpVelocity:velocity];
         default:
             break;
     }
+}
+
+// shake action
+-(void)shakeAction {
+    NSLog(@"Shaking!");
+    [world toggleGravity];
 }
 
 // -----------------------------------------------------------------------
@@ -190,4 +194,22 @@
 }
 
 // -----------------------------------------------------------------------
+@end
+
+
+// Recognizer for shaking events
+@implementation CCDirector (Shake)
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventSubtypeMotionShake) {
+        NSLog(@"Shake detected");
+        if ([self.runningScene isKindOfClass:[HelloWorldScene class]]) {
+            [(HelloWorldScene*)self.runningScene shakeAction];
+        }
+//        if ([self.runningScene respondsToSelector:@selector(shakeAction)]) {
+//            [(HelloWorldScene*)self.runningScene shakeAction];
+//        }
+    }
+}
+
 @end
