@@ -36,6 +36,9 @@
 
 -(void)resetPosition {
     self.position = startPosition;
+    self.rotation = 0;
+    self.physicsBody.angularVelocity = 0;
+    self.physicsBody.velocity = CGPointZero;
 }
 
 

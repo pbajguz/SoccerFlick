@@ -20,6 +20,11 @@
     CCSprite *legRight;
     CCSprite *handLeft;
     CCSprite *handRight;
+    // limb starting positions
+    CGPoint lL;
+    CGPoint lR;
+    CGPoint hL;
+    CGPoint hR;
     NSString *collisionGroup;
     // saved position for restarting player position
     CGPoint startPosition;
@@ -47,10 +52,14 @@
         self.physicsBody.collisionGroup = collisionGroup;
         
         // Init limbs
-        legLeft = [self createLimb:ccp(point.x-self.contentSize.width/4, point.y-self.contentSize.height/3)];
-        legRight = [self createLimb:ccp(point.x+self.contentSize.width/4, point.y-self.contentSize.height/3)];
-        handLeft = [self createLimb:ccp(point.x-self.contentSize.width/4, point.y-self.contentSize.height/8)];
-        handRight = [self createLimb:ccp(point.x+self.contentSize.width/4, point.y-self.contentSize.height/8)];
+        lL = ccp(point.x-self.contentSize.width/4, point.y-self.contentSize.height/3);
+        lR = ccp(point.x+self.contentSize.width/4, point.y-self.contentSize.height/3);
+        hL = ccp(point.x-self.contentSize.width/4, point.y-self.contentSize.height/8);
+        hR = ccp(point.x+self.contentSize.width/4, point.y-self.contentSize.height/8);
+        legLeft = [self createLimb:lL];
+        legRight = [self createLimb:lR];
+        handLeft = [self createLimb:hL];
+        handRight = [self createLimb:hR];
         
         // save starting position
         startPosition = point;
@@ -110,8 +119,18 @@
 
 // resets player position
 -(void)resetPosition {
-    self.position = startPosition;
-    self.rotation = 0;
+    [self resetPositionOfObject:self position:startPosition];
+    [self resetPositionOfObject:handLeft position:hL];
+    [self resetPositionOfObject:handRight position:hR];
+    [self resetPositionOfObject:legLeft position:lL];
+    [self resetPositionOfObject:legRight position:lR];
+}
+
+-(void)resetPositionOfObject:(CCNode*)object position:(CGPoint)position {
+    object.position = position;
+    object.rotation = 0;
+    object.physicsBody.angularVelocity = 0;
+    object.physicsBody.velocity = CGPointZero;
 }
 
 @end
