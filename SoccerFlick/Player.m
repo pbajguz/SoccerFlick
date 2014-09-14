@@ -16,6 +16,8 @@
     CCSprite *handLeft;
     CCSprite *handRight;
     NSString *collisionGroup;
+    CGPoint startPosition;
+    NSTimer *aiTimer;
 }
 
 @end
@@ -34,13 +36,12 @@
         self.physicsBody.collisionGroup = collisionGroup;
         
         // Init limbs
+        legLeft = [self createLimb:ccp(point.x-self.contentSize.width/4, point.y-self.contentSize.height/3)];
+        legRight = [self createLimb:ccp(point.x+self.contentSize.width/4, point.y-self.contentSize.height/3)];
+        handLeft = [self createLimb:ccp(point.x-self.contentSize.width/4, point.y-self.contentSize.height/8)];
+        handRight = [self createLimb:ccp(point.x+self.contentSize.width/4, point.y-self.contentSize.height/8)];
         
-        legLeft = [self createLimb:CGPointMake(point.x-self.contentSize.width/4, point.y-self.contentSize.height/3)];
-        legRight = [self createLimb:CGPointMake(point.x+self.contentSize.width/4, point.y-self.contentSize.height/3)];
-        handLeft = [self createLimb:CGPointMake(point.x-self.contentSize.width/4, point.y-self.contentSize.height/8)];
-        handRight = [self createLimb:CGPointMake(point.x+self.contentSize.width/4, point.y-self.contentSize.height/8)];
-        
-        
+        startPosition = point;
     }
     return self;
 }
@@ -65,6 +66,15 @@
     return limb;
 }
 
+-(void)initAI {
+    aiTimer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(aiAction:) userInfo:nil repeats:YES];
+}
+
+-(void)aiAction:(NSTimer*)timer {
+    const int playerMaxFlick = MAX_FLICK_SPEED * 10;
+    [self jumpVelocity:ccp(playerMaxFlick - ( arc4random() % (playerMaxFlick*2) ), playerMaxFlick - arc4random() % (playerMaxFlick*2) )];
+}
+
 -(void)jumpVelocity:(CGPoint)velocity {
     CGPoint flick = velocity;
     flick.y = -flick.y;
@@ -75,6 +85,11 @@
     if (flick.y > MAX_FLICK_SPEED) flick.y = MAX_FLICK_SPEED;
     else if (flick.y < -MAX_FLICK_SPEED) flick.y = -MAX_FLICK_SPEED;
     [self.physicsBody applyImpulse:flick];
+}
+
+-(void)resetPosition {
+    self.position = startPosition;
+    self.rotation = 0;
 }
 
 @end

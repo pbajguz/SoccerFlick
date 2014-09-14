@@ -15,5 +15,6 @@
 
 -(id)initWithScene:(CCScene*)scene;
 
+-(void)addScore:(BOOL)enemy;
 
 @end

@@ -19,6 +19,10 @@
 
 -(void)addToWorld:(CCPhysicsNode*)world;
 
+-(void)initAI;
+
 -(void)jumpVelocity:(CGPoint)velocity;
+
+-(void)resetPosition;
 
 @end

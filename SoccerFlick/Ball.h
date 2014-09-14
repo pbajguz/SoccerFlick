@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Ball : CCNode {
+@interface Ball : CCSprite {
     
 }
 
 -(id)initWithPosition:(CGPoint)point;
+
+-(void)resetPosition;
 
 @end
