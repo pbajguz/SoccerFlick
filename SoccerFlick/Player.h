@@ -9,8 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Player : CCNode {
+@interface Player : CCSprite { //NSObject {//
     
 }
+
+//@property (strong, nonatomic) CCSprite* sprite;
+
+-(id)initWithPosition:(CGPoint)point;
+
+-(void)addToWorld:(CCPhysicsNode*)world;
+
+-(void)jumpVelocity:(CGPoint)velocity;
 
 @end

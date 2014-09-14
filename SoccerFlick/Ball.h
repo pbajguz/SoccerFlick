@@ -13,6 +13,6 @@
     
 }
 
--(id)initWithWidth:(CGFloat)width height:(CGFloat)height;
+-(id)initWithPosition:(CGPoint)point;
 
 @end

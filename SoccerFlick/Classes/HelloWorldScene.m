@@ -18,19 +18,20 @@
 #pragma mark - HelloWorldScene
 // -----------------------------------------------------------------------
 
-@implementation HelloWorldScene
-{
-    CCSprite *_ball;
-    CCPhysicsNode *_physicsWorld;
-    CCSprite *_floor;
-    
+@interface HelloWorldScene () {
+    UIPanGestureRecognizer *panGestureRecognizer;
     World *world;
     Player *player;
     Player *enemy;
     Ball *ball;
     Goal *playerGoal;
     Goal *enemyGoal;
+    CGPoint velocity;
 }
+
+@end
+
+@implementation HelloWorldScene
 
 // -----------------------------------------------------------------------
 #pragma mark - Create & Destroy
@@ -51,6 +52,10 @@
     
     // Enable touch handling on scene node
     self.userInteractionEnabled = YES;
+    panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
+    [[CCDirector sharedDirector].view addGestureRecognizer:panGestureRecognizer];
+    panGestureRecognizer.delegate = self;
+    
     
     // Screen size for diffrent objects
     CGFloat width = self.contentSize.width, height = self.contentSize.height;
@@ -60,8 +65,15 @@
     world = [[World alloc] initWithScene:weakSelf];
     
     // Add the ball
-    ball = [[Ball alloc] initWithWidth:width height:height];
+    //ball = [[Ball alloc] initWithWidth:width height:height];
+    ball = [[Ball alloc] initWithPosition:CGPointMake(width/2, height/2)];
     [world addChild:ball];
+    
+    // Add the players
+    player = [[Player alloc] initWithPosition:CGPointMake(width/4, height/2)];
+    [player addToWorld:world];
+    enemy = [[Player alloc] initWithPosition:CGPointMake(width/4 * 3, height/2)];
+    [enemy addToWorld:world];
     
     // Create a back button
     CCButton *backButton = [CCButton buttonWithTitle:@"[ Menu ]" fontName:@"Verdana-Bold" fontSize:18.0f];
@@ -79,9 +91,14 @@
 - (void)dealloc
 {
     // clean up code goes here
+    [[CCDirector sharedDirector].view removeGestureRecognizer:panGestureRecognizer];
 }
 
--(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ball:(CCNode *)nodeA floor:(CCNode *)nodeB {
+// -----------------------------------------------------------------------
+#pragma mark - Collision detection
+// -----------------------------------------------------------------------
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ball:(CCNode *)nodeA goal:(CCNode *)nodeB {
     NSLog(@"Objects touched!");
     return TRUE;
 }
@@ -113,15 +130,19 @@
 #pragma mark - Touch Handler
 // -----------------------------------------------------------------------
 
--(void) touchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    CGPoint touchLoc = [touch locationInNode:self];
-    
-    // Log touch location
-    CCLOG(@"Move sprite to @ %@",NSStringFromCGPoint(touchLoc));
-    
-    // Move our sprite to touch location
-    CCActionMoveTo *actionMove = [CCActionMoveTo actionWithDuration:1.0f position:touchLoc];
-    [_ball runAction:actionMove];
+// Detect user flicks
+-(void)didPan:(UIPanGestureRecognizer*)recognizer {
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:
+            break;
+        case UIGestureRecognizerStateEnded:
+            velocity = [recognizer velocityInView:[recognizer.view superview]];
+            CGFloat angle = atan2f(velocity.y, velocity.x);
+            NSLog(@"%f, %f, %f", velocity.x, velocity.y, angle);
+            [player jumpVelocity:velocity];
+        default:
+            break;
+    }
 }
 
 // -----------------------------------------------------------------------
@@ -130,6 +151,7 @@
 
 - (void)onBackClicked:(id)sender
 {
+    [[CCDirector sharedDirector].view removeGestureRecognizer:panGestureRecognizer];
     // back to intro scene with transition
     [[CCDirector sharedDirector] replaceScene:[IntroScene scene]
                                withTransition:[CCTransition transitionPushWithDirection:CCTransitionDirectionRight duration:1.0f]];

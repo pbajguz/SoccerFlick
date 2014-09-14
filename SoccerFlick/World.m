@@ -8,11 +8,14 @@
 
 #import "World.h"
 
-
-@implementation World {
+@interface World () {
     CCScene *canvas;
     CCNode *floor;
 }
+
+@end
+
+@implementation World
 
 -(id)initWithScene:(CCScene*)scene {
     self = [super init];
@@ -25,8 +28,9 @@
         
         // Create physics
         self.gravity = ccp(0, -100);
-        //self.debugDraw = YES;
+        self.debugDraw = YES;
         self.collisionDelegate = (NSObject<CCPhysicsCollisionDelegate>*)canvas;
+        self.iterations = 2;
         [canvas addChild:self];
         
         // Create ground to play on
@@ -36,16 +40,14 @@
         floor.position = ccp(canvas.contentSize.width/2, 0);
         floor.color = [CCColor colorWithRed:0.2 green:0.8 blue:0.2];
         floor.physicsBody = [CCPhysicsBody bodyWithRect:(CGRect){CGPointZero, floor.contentSize} cornerRadius:0];
-        floor.physicsBody.affectedByGravity = NO;
-        floor.physicsBody.mass = 1000000;
+        //floor.physicsBody.affectedByGravity = NO;
+        //floor.physicsBody.mass = 1000000;
+        floor.physicsBody.type = CCPhysicsBodyTypeStatic;
         [self addChild:floor];
     }
     return self;
 }
 
--(void)add:(CCNode*)object {
-    
-}
 
 
 @end

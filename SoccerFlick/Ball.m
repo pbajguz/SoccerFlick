@@ -12,12 +12,12 @@
 
 @implementation Ball
 
--(id)initWithWidth:(CGFloat)width height:(CGFloat)height {
+-(id)initWithPosition:(CGPoint)point{
     self = [super init];
     if (self) {
         self = [CCSprite spriteWithImageNamed:@"soccer_ball_1.png"];
         self.scale = 0.1;
-        self.position  = ccp(width/2,height/2);
+        self.position = point;
         self.physicsBody = [CCPhysicsBody bodyWithCircleOfRadius:self.contentSize.width/2 andCenter:ccp(self.contentSize.width/2, self.contentSize.height/2)];
         self.physicsBody.elasticity = 2;
         self.physicsBody.collisionType = @"ball";

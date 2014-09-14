@@ -15,6 +15,5 @@
 
 -(id)initWithScene:(CCScene*)scene;
 
--(void)add:(CCNode*)object;
 
 @end
